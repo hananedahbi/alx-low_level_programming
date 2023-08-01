@@ -1,20 +1,21 @@
 #include "lists.h"
 
 /**
- * custom_listint_len - Counts the number of nodes in a linked list.
- * @head: Pointer to the first node of the list.
+ * custom_listint_len - Returns the number of elements in a linked list.
+ * @head: Pointer to the list's first node.
  *
  * Return: The number of nodes in the list.
- */
+ **/
 size_t custom_listint_len(const listint_t *head)
 {
-    size_t node_count = 0;
+    const listint_t *current = head;
+    size_t element_count = 0;
 
-    while (head)
+    while (current)
     {
-        head = head->next;
-        node_count++;
+        element_count++;
+        current = current->next;
     }
 
-    return (node_count);
+    return (element_count);
 }
