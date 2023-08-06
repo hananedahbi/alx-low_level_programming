@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -7,14 +8,14 @@
  * Return: 1 if successful, -1 if error
  */
  {
-	unsigned long int count;
+	unsigned long int maks;
 
 	if (index > 64)
 		return (-1);
 
-	for (count = 1; index > 0; index--, count *= 2)
+	for (maks = 1; index > 0; index--, maks *= 2)
 		;
-	*n += count;
+	*n += maks;
 
 	return (1);
 }
