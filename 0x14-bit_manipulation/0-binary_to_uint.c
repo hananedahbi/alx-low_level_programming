@@ -2,27 +2,28 @@
 #include <stdio.h>
 
 /**
- * binary_to_uint - Converts a binary number string to an unsigned int.
+ * binary_to_uint - Convert binary
  * @b: Binary string
- * Return: Converted decimal number, or 0 if invalid char is found
+ * Return: Decimal number,
+ *         or 0 if invalid char
  */
 unsigned int binary_to_uint(const char *b)
 {
     unsigned int result, count;
-	int maks;
+	int index;
 
 	if (b == NULL)
 		return (0);
 
-	for (maks = 0; b[maks]; maks++)
+	for (index = 0; b[index]; index++)
 	{
-		if (b[maks] != '0' && b[maks] != '1')
+		if (b[index] != '0' && b[index] != '1')
 			return (0);
 	}
 
-	for ( count = 1, result = 0, maks--; maks >= 0; maks--, count *= 2)
+	for (count = 1, result = 0, index--; index >= 0; index--, count *= 2)
 	{
-		if (b[maks] == '1')
+		if (b[index] == '1')
 			result += count;
 	}
 
