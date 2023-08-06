@@ -7,6 +7,7 @@
  * @index: Position index
  * Return: 1 if successful, -1 if error
  */
+ int set_bit(unsigned long int *n, unsigned int index)
  {
 	unsigned long int maks;
 
