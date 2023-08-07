@@ -71,8 +71,6 @@ int main(int argc, char **argv)
 	else
 		printf("<unknown: %x>\n", header.e_ident[EI_CLASS]);
 
-	/* Add more fields for other information */
-
 	close(fd);
 	return (0);
 }
