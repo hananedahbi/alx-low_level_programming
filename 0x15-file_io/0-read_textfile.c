@@ -1,11 +1,14 @@
-#include "main.h"
+#include <unistd.h>
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * read_textfile - Read file
- * @filename: File name
- * @letters: Number of letters
- * Return: Actual number
+ * read_textfile - Reads a text file and prints it to POSIX stdout.
+ * @filename: Pointer to the name of the file.
+ * @letters: The number of letters the function should read and print.
+ *
+ * Return: If the function fails or filename is NULL - 0.
+ *         O/w - the actual number of letters it could read and print.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
@@ -15,22 +18,31 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (filename == NULL)
 		return (0);
 
-	buffer = malloc(sizeof(char) * num_letters);
+	buffer = malloc(letters * sizeof(char));
 	if (buffer == NULL)
 		return (0);
 
 	file_desc = open(filename, O_RDONLY);
-	read_count = read(file_desc, buffer, num_letters);
-	write_count = write(STDOUT_FILENO, buffer, read_count);
-
-	if (file_desc == -1 || read_count == -1 || write_count == -1 || write_count != read_count)
+	if (file_desc == -1)
 	{
 		free(buffer);
 		return (0);
 	}
-	
-	free(buffer);
+
+	read_count = read(file_desc, buffer, letters);
 	close(file_desc);
 
-	return (write_count);
+	if (read_count == -1)
+	{
+		free(buffer);
+		return (0);
+	}
+
+	write_count = write(STDOUT_FILENO, buffer, read_count);
+	free(buffer);
+
+	if (write_count == -1 || (size_t)write_count < letters)
+		return (0);
+
+	return (read_count);
 }
