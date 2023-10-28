@@ -3,12 +3,12 @@
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int i;
+	unsigned long int camp;
 
 	if (index > 64)
 		return (-1);
 
-	i = n >> index;
+	camp = n >> index;
 
-	return (i & 1);
+	return (camp & 1);
 }
