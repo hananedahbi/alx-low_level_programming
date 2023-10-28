@@ -4,7 +4,7 @@
 void print_binary(unsigned long int n)
 {
 	unsigned long int temp;
-	int s;
+	int shifts;
 
 	if (n == 0)
 	{
@@ -12,12 +12,11 @@ void print_binary(unsigned long int n)
 		return;
 	}
 
-	for (temp = n, s = 0; (temp >>= 1) > 0; s++)
-		;
+	for (temp = n, shifts = 0; (temp >>= 1) > 0; shifts++)
 
-	for (; s >= 0; s--)
+	for (shifts >= 0; shifts--)
 	{
-		if ((n >> s) & 1)
+		if ((n >> shifts) & 1)
 			printf("1");
 		else
 			printf("0");
